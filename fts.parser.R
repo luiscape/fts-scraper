@@ -6,8 +6,9 @@
 require(RCurl)
 require(jsonlite) # works well in parsing the resulting XML.
 
-fts.query <- function() {
-  url <- c("http://fts.unocha.org/api/v1/Contribution/emergency/16440.html")
+
+fts.query <- function(url = "NA") {
+  if (url == "NA") { print("Please provide a valid FTS URL. For more information check this website: ")}
   x <- fromJSON(getURLContent(url))
   write.csv(x, file = paste("data/fts-",'x.csv', sep = ""), row.names = FALSE)
   return(x)
